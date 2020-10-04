@@ -1,0 +1,43 @@
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding: 100px 0;
+}
+
+header, footer {
+    background-color:  gold;
+    padding: 20px;
+    height: 100px;
+}
+header {
+    border-radius: 0 0 5px 5px;
+}
+footer{
+    border-radius: 5px 5px 0 0;
+}
+nav {
+    margin: 10px 0;
+}
+h2, h3 {
+    font-size: 1rem;
+}
+.pet-card {
+    padding: 20px;
+}
+form > p {
+
+}
+form > p > label {
+    width: 30%;
+    margin-bottom: 0;
+}
+form > p > span {
+    display: block;
+    font-size: 0.8rem;
+}
+form > p > input,
+form > p > select {
+    min-width: 25%;
+}
+.contacts {
+    margin-top: 20px;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block extra_title %}
+Все наши питомцы
+{% endblock extra_title %}
+{% block header %}
+    Все питомцы
+{% endblock header %}
+{% block content %}
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Фотка</th>
+            <th scope="col">Погоняло</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Ссылка на инфо</th>
+            <th scope="col">Ссылка на правку</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for pet in pets %}
+            <tr>
+                <td><img src="{{ pet.get_photo_url }}" height="100" width="100"/></td>
+                <td><h2>{{ pet.name }}</h2></td>
+                <td><p>{{ pet.age }}</p></td>
+                <td><a href={% url 'pets:pet_detail' pet.pk %}>Подробнее</a></td>
+                <td><a href={% url 'pets:pet_edit' pet.pk %}>Редактировать</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

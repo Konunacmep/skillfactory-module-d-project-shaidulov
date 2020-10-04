@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block extra_title %}
+Питомец
+{% endblock extra_title %}
+{% block header %}
+    {{ pet.name }}
+{% endblock header %}
+{% block content %}
+        <div class="pet-card wrapper d-flex justify-content-between bg-white rounded">
+            <div>
+                <p>Возраст: {{ pet.age }}</p>
+                <p>Пол: {{ pet.gender|yesno:"Мальчик, Девочка" }}</p>
+                <p>Порода: {{ pet.breed }}</p>
+                <p>{{ pet.breed.breed_description }}</p>
+                <p>Дата поступления: {{ pet.date }}</p>
+                <p>Краткая история: {{ pet.story }}</p>
+            </div>
+            <div>
+                <img src="{{ pet.get_photo_url }}" height="300" width="300" class="rounded">
+            </div>
+        </div>
+{% endblock content %}

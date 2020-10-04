@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block extra_title %}
+Регистрация животного
+{% endblock extra_title %}
+{% block header %}
+    Регистрация нового животного
+{% endblock header %}
+{% block content %}
+	<a class="btn btn-danger" href={% url 'pets:add_breed' %}>Добавить породу</a>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Сохранить" class="btn btn-primary">
+	</form>
+	<script>
+		document.getElementById('id_animal_type_ref').addEventListener('change', function() {
+			loadBreeds(this.value);
+			});
+		function loadBreeds(filter_id) {
+		    query_param = isNaN(filter_id) ? -1 : filter_id;
+			let ur = "{% url 'pets:breedlist' breed_id=0 %}"
+		    fetch( ur + query_param)
+				.then(response => response.json())
+				.then(data => {
+		      	    document.getElementById('id_breed').innerHTML = ''
+		      	    data.forEach(element => {
+		      	        let opt = document.createElement('option');
+		      	        opt.value = element.id;
+		      	        opt.innerText = element.breed_name;
+		      	        document.getElementById('id_breed').appendChild( opt );
+		      	    });
+		      	});
+		}
+	</script>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block extra_title %}
+Добавление породы
+{% endblock extra_title %}
+{% block header %}
+    Добавление породы
+{% endblock header %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Сохранить" class="btn btn-primary">
+    </form>
+{% endblock content %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Временный приют, {% block extra_title %}{% endblock extra_title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% block bootstrap_header %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    {% endblock bootstrap_header %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.webp' %}">
+    <!-- <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-7.8.9.min.js"></script> -->
+{% block extra_head %}
+{% endblock extra_head %}
+</head>
+    <body class="bg-light">
+        <div class="container content">
+            <header class="header fixed-top bg-dark text-light">
+                <h1 class="">
+                    {% block header %}
+                    {% endblock header %}
+                </h1>
+            </header>
+            <nav>
+                <ul class="nav nav-pills justify-content-center">
+                    <li class="nav-item">
+                      <a class="nav-link{% if request.resolver_match.url_name == 'landing' %} active{% endif %}" href={% url 'landing' %}>Главная страница</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link{% if request.resolver_match.url_name == 'pet_list' %} active{% endif %}" href={% url 'pets:pet_list' %}>Все наши питомцы</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link{% if request.resolver_match.url_name == 'add_pet' %} active{% endif %}" href={% url 'pets:add_pet' %}>Регистрация животного</a>
+                    </li>
+                  </ul>
+            </nav>
+                {% block content %}
+                {% endblock content %}
+            <footer class="footer fixed-bottom bg-dark text-light text-right">
+                <p class="contacts">abuse@microsoft.com</p>
+            </footer>
+        </div>
+    </body>
+</html>

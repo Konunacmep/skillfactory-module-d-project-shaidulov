@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    Добро пожаловать во "Временный приют"
+{% endblock header %}
+{% block content %}
+    <h2>В данный момент в приюте содержится {{ amount }} животных</h2>
+    <h3>Карточка случайного животного, хозяином которого можете стать вы!</h3>
+    <div class="pet-card wrapper d-flex justify-content-between bg-white rounded">
+        <div>
+            <p>Томится в неволе (дней): {{ random_card.time_here }}</p>
+            <p>Возраст: {{ random_card.age }}</p>
+            <p>Пол: {{ random_card.gender|yesno:"Мальчик, Девочка" }}</p>
+            <p>Порода: {{ random_card.breed.breed_name }}</p>
+            <p>Описание породы: {{ random_card.breed.breed_description }}</p>
+            <p>Дата поступления: {{ random_card.date }}</p>
+            <p>Краткая история: {{ random_card.story }}</p>
+        </div>
+        <div>
+            <img src="{{ random_card.get_photo_url }}" height="300" width="300" class="rounded">
+        </div>
+    </div>
+{% endblock content %}
